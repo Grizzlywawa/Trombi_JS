@@ -88,6 +88,7 @@ find_students()
 
 let pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let current = 0;
+let audio = document.querySelector("#konami_sound");
 
 let keyHandler = function(event){
     console.log(event.key)
@@ -99,13 +100,17 @@ let keyHandler = function(event){
     //avance dans le pattern
     current++;
 
-    if(pattern.length===current){
+    if(pattern.length===current && audio.paused){
         current = 0;
-        document.querySelector("#konami_sound").loop=true;
-        document.querySelector("#konami_sound").play();
+        audio.loop=true;
+        audio.play();
+    }else if(pattern.length ===current && audio.played){
+        current = 0;
+        audio.pause();
     }
 }
 document.addEventListener('keydown', keyHandler, false);
+
 
 
 
