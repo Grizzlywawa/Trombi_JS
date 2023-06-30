@@ -85,3 +85,27 @@ async function find_students() {
 }
 // "which php" dans le terminal pour trouver d'où viennent les instructions php
 find_students()
+
+let pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let current = 0;
+
+let keyHandler = function(event){
+    console.log(event.key)
+    // si la touche n'est pas dans le pattern ou ce n'est pas dans le bon ordre, reset
+    if(pattern.indexOf(event.key)<0 || event.key!==pattern[current]){
+        current = 0;
+        return;
+    }
+    //avance dans le pattern
+    current++;
+
+    if(pattern.length===current){
+        current = 0;
+        document.querySelector("#konami_sound").loop=true;
+        document.querySelector("#konami_sound").play();
+    }
+}
+document.addEventListener('keydown', keyHandler, false);
+
+
+
