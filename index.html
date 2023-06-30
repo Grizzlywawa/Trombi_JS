@@ -3,134 +3,15 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Trombinoscope TIW 01-23</title>
-    <style>
-        .none{
-            display: none;
-        }
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: burlywood;
-            font-family: Gobold, Helvetica;
-        }
-        .student{
-            display: flex;
-            flex-direction: column;
-            width: 400px;
-            height: 600px;
-            background-color: blanchedalmond;
-            border-radius: 10%;
-            padding-top: 25px;
-            padding-inline: 20px;
-            border: grey 1px solid;
-        }
-
-        .avatar{
-
-            border-radius: 50%;
-            width: 50%;
-            object-fit: cover;
-            border: grey 1px solid;
-            align-self: center;
-        }
-
-        .pseudo{
-            text-align: center;
-            text-decoration: underline grey;
-        }
-
-        .button{
-            text-decoration: none;
-            color: black;
-            border-radius: 10%;
-            padding : 10px;
-            background-color: burlywood;
-            align-self: center;
-        }
-    </style>
 </head>
 <body>
-<h1 style="font-family: Gobold; text-align: center; font-size: 5rem">TROMBINOSCOPE TIW 01-2023</h1>
-<div id="grid" style="display: grid; grid-template-columns: repeat(2,1fr); gap:4rem"></div>
+<h1>TROMBINOSCOPE TIW 01-2023</h1>
+<lottie-player src="https://assets7.lottiefiles.com/packages/lf20_re6CPjLyvZ.json"  background="transparent"  speed="1.5"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
+<div id="grid"></div>
 </body>
-<script>
-    async function find_students() {
-        let api_students = [];
-        let students = ["bell4my",
-            "seynipeyre",
-            "Gstarmix",
-            "grizzlywawa",
-            "josic490",
-            "errudo",
-            "anthony35540",
-            "sumnifer",
-            "Davyde35",
-            "cattchoo",
-            "faaay80",
-            "jdasou"];
-        students.sort(() => Math.random() - 0.5);
-        const options = {
-            headers: {
-                'Authorization': 'Bearer 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'
-            }
-        }
-        for(student of students){
-            api_stud = await fetch("https://api.github.com/users/" + student, options)
-            .then (res => res.json())
-            api_students.push(api_stud);
-            let newDiv = document.createElement('div');
-            newDiv.classList.add('student');
-            newDiv.setAttribute('data-student', student.toLowerCase());
-            document.querySelector('#grid').appendChild(newDiv);
-            let img = document.createElement('img');
-            newDiv.appendChild(img);
-            img.src=api_stud.avatar_url;
-            img.classList = "avatar";
-            let pseudo = document.createElement('h2');
-            newDiv.appendChild(pseudo);
-            pseudo.innerText = api_stud.login.toUpperCase();
-            pseudo.classList = "pseudo";
-            let email = document.createElement('p');
-            newDiv.appendChild(email);
-            email.innerText = "Mail : " + api_stud.email;
-            email.classList = "email";
-            if (api_stud.email == null){
-                email.classList.add("none");
-            }
-            let bio = document.createElement('p');
-            newDiv.appendChild(bio);
-            bio.innerText = "Bio : " + api_stud.bio;
-            bio.classList = "bio";
-            if (api_stud.bio == null){
-                bio.classList.add("none");
-            }let location = document.createElement('p');
-            newDiv.appendChild(location);
-            location.innerText = "Location : " + api_stud.location;
-            location.classList = "bio";
-            if (api_stud.location == null){
-                location.classList.add("none");
-            }
-            let repository = document.createElement('p');
-            newDiv.appendChild(repository);
-            repository.innerText = "Nombre de répertoires : " + api_stud.public_repos;
-            repository.classList = "repository";
-            let followers = document.createElement('p');
-            newDiv.appendChild(followers);
-            followers.innerText = "Nombre de followers : " + api_stud.followers;
-            followers.classList = "followers";
-            let button = document.createElement('a');
-            newDiv.appendChild(button);
-            button.innerText = "En savoir plus";
-            button.href=api_stud.html_url;
-            button.classList = "button";
-        }
-        console.log(api_students)
-
-    }
-    find_students()
-
-</script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="js/script.js"></script>
 </html>

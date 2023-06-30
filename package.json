@@ -2,5 +2,6 @@
   "name": "Trombi_JS",
   "version": "1.0.0",
   "dependencies": {
+    "aos": "^2.3.4"
   }
 }
