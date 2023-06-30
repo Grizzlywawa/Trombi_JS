@@ -12,7 +12,6 @@ let students = ["bell4my",
     "cattchoo",
     "faaay80",
     "jdasou"];
-let count = 0;
 
 async function find_students() {
     students.sort(() => Math.random() - 0.2);
@@ -74,6 +73,7 @@ async function find_students() {
         followers.classList = "followers";
         let button = document.createElement('a');
         newDiv.appendChild(button);
+        button.setAttribute("target", "blank")
         button.innerText = "En savoir plus";
         button.href = api_stud.html_url;
         button.classList = "button";
