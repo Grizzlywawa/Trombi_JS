@@ -1,0 +1,24 @@
+@media screen and (min-width:600px){
+    .student{
+        width: 400px;
+    }
+}
+@media screen and (min-width:800px){
+    h1{
+        font-size: 4rem;
+    }
+}
+@media screen and (min-width:1000px){
+
+    h1{
+        font-size: 5rem;
+    }
+    #grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media screen and (min-width:1500px){
+    #grid{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
