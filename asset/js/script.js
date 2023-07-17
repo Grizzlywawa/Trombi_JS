@@ -28,6 +28,16 @@ async function find_students() {
     for (student of students) {
         let api_stud = await fetch("https://api.github.com/users/" + student, options)
             .then(res => res.json())
+            .catch(function error(){
+                let newSpan = document.createElement('span');
+                newSpan.classList.add('error');
+                newSpan.innerText = "La requête fetch n'a pas pu se faire !"
+                document.querySelector('#loading').appendChild(newSpan)
+                let img = document.createElement('img');
+                img.setAttribute('src', 'asset/gif/Godno.gif');
+                document.querySelector('#loading').appendChild(img)
+
+            })
         api_students.push(api_stud);
         let newDiv = document.createElement('div');
         newDiv.classList.add('student');
@@ -92,7 +102,6 @@ let current = 0;
 let audio = document.querySelector("#konami_sound");
 
 let keyHandler = function(event){
-    console.log(event.key)
     // si la touche n'est pas dans le pattern ou ce n'est pas dans le bon ordre, reset
     if(pattern.indexOf(event.key)<0 || event.key!==pattern[current]){
         current = 0;

@@ -18,6 +18,10 @@ h1{
 
 #loading{
     padding-top: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 .loading{
     position: absolute;
