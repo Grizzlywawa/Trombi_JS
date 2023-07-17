@@ -1,6 +1,6 @@
 
-let api_students = [];
-let students = ["bell4my",
+const api_students = [];
+const students = ["bell4my",
     "seynipeyre",
     "Gstarmix",
     "grizzlywawa",
@@ -18,13 +18,11 @@ let students = ["bell4my",
 
 async function find_students() {
     students.sort(() => Math.random() - 0.2);
-    let env = await fetch("../.env")
+    const env = await fetch("../.env")
         .then(res => res.text())
-
-
-    let split = env.split('=');
-    let slice = split.slice(1)
-    let api_key = slice.toString()
+    const split = env.split('=');
+    const slice = split.slice(1)
+    const api_key = slice.toString()
     const options = {
         headers: {
             'Authorization': 'Bearer ' + api_key
@@ -32,65 +30,63 @@ async function find_students() {
     }
 
 
-
-
     for (student of students) {
-        let api_stud = await fetch("https://api.github.com/users/" + student, options)
+        const api_stud = await fetch("https://api.github.com/users/" + student, options)
         .then(res => res.json())
         .catch(function error(){
-            let newSpan = document.createElement('span');
+            const newSpan = document.createElement('span');
             newSpan.classList.add('error');
             newSpan.innerText = "La requête fetch n'a pas pu se faire !"
             document.querySelector('#loading').appendChild(newSpan)
-            let img = document.createElement('img');
+            const img = document.createElement('img');
             img.setAttribute('src', 'asset/gif/Godno.gif');
             document.querySelector('#loading').appendChild(img);
         });
 
         api_students.push(api_stud);
-        let newDiv = document.createElement('div');
+        const newDiv = document.createElement('div');
         newDiv.classList.add('student');
         newDiv.setAttribute('data-student', student.toLowerCase());
         newDiv.setAttribute('data-aos', 'fade-up');
         document.querySelector('#grid').appendChild(newDiv);
-        let img = document.createElement('img');
+        const img = document.createElement('img');
         newDiv.appendChild(img);
         img.src = api_stud.avatar_url;
         img.classList = "avatar";
-        let pseudo = document.createElement('h2');
+        const pseudo = document.createElement('h2');
         newDiv.appendChild(pseudo);
         pseudo.innerText = api_stud.login.toUpperCase();
         pseudo.classList = "pseudo";
-        let email = document.createElement('p');
+        const email = document.createElement('p');
         newDiv.appendChild(email);
         email.innerText = "Mail : " + api_stud.email;
         email.classList = "email";
         if (api_stud.email == null) {
             email.classList.add("none");
         }
-        let bio = document.createElement('p');
+        const bio = document.createElement('p');
         newDiv.appendChild(bio);
         bio.innerText = "Bio : " + api_stud.bio;
         bio.classList = "bio";
         if (api_stud.bio == null) {
             bio.classList.add("none");
         }
-        let location = document.createElement('p');
+        const location = document.createElement('p');
         newDiv.appendChild(location);
         location.innerText = "Location : " + api_stud.location;
         location.classList = "bio";
         if (api_stud.location == null) {
             location.classList.add("none");
         }
-        let repository = document.createElement('p');
+        const repository = document.createElement('p');
         newDiv.appendChild(repository);
         repository.innerText = "Nombre de répertoires : " + api_stud.public_repos;
         repository.classList = "repository";
-        let followers = document.createElement('p');
+        const followers = document.createElement('p');
         newDiv.appendChild(followers);
         followers.innerText = "Nombre de followers : " + api_stud.followers;
         followers.classList = "followers";
-        let button = document.createElement('a');
+        const button = document.createElement('a');
         newDiv.appendChild(button);
         button.setAttribute("target", "blank")
         button.innerText = "En savoir plus";
@@ -110,11 +106,11 @@ async function find_students() {
 // "which php" dans le terminal pour trouver d'où viennent les instructions php
 find_students()
 
-let pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+const pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let current = 0;
-let audio = document.querySelector("#konami_sound");
+const audio = document.querySelector("#konami_sound");
 
-let keyHandler = function(event){
+const keyHandler = function(event){
     // si la touche n'est pas dans le pattern ou ce n'est pas dans le bon ordre, reset
     if(pattern.indexOf(event.key)<0 || event.key!==pattern[current]){
         current = 0;
