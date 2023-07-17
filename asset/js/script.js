@@ -46,16 +46,7 @@ async function find_students() {
             img.setAttribute('src', 'asset/gif/Godno.gif');
             document.querySelector('#loading').appendChild(img);
         });
-        if(document.status !== 200){
-            let newSpan = document.createElement('span');
-            newSpan.classList.add('error');
-            newSpan.innerText = "Le token n'est pas bon !"
-            document.querySelector('#loading').appendChild(newSpan)
-            let img = document.createElement('img');
-            img.setAttribute('src', 'asset/gif/travoltasearch.gif');
-            document.querySelector('#loading').appendChild(img);
-            document.querySelector(".loading").style.display="none"
-        }
+
         api_students.push(api_stud);
         let newDiv = document.createElement('div');
         newDiv.classList.add('student');
