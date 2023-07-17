@@ -2,6 +2,9 @@
     .student{
         width: 400px;
     }
+    .loading{
+        right : auto;
+    }
 }
 @media screen and (min-width:800px){
     h1{

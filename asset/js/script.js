@@ -80,9 +80,10 @@ async function find_students() {
 
     }
     document.querySelector("#grid").style.display="grid"
-    document.querySelector(".loading").style.display="none"
+    document.querySelector("#loading").style.display="none"
     document.querySelector(".title").style.display="inline"
 }
+
 // "which php" dans le terminal pour trouver d'où viennent les instructions php
 find_students()
 
@@ -110,6 +111,8 @@ let keyHandler = function(event){
     }
 }
 document.addEventListener('keydown', keyHandler, false);
+
+AOS.init();
 
 
 

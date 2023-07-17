@@ -16,10 +16,13 @@ h1{
     font-size: 2rem;
 }
 
+#loading{
+    padding-top: 300px;
+}
 .loading{
     position: absolute;
     top:30%;
-    right:40%;
+    right:10%;
 }
 
 #grid{
