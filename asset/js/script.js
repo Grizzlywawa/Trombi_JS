@@ -11,12 +11,16 @@ let students = ["bell4my",
     "Davyde35",
     "cattchoo",
     "faaay80",
-    "jdasou"];
+    "jdasou",
+    "Maelissb",
+    "lukasatan"];
 
 async function find_students() {
     students.sort(() => Math.random() - 0.2);
     let env = await fetch("../.env")
         .then(res => res.text())
+
+
     let split = env.split('=');
     let slice = split.slice(1)
     let api_key = slice.toString()
@@ -25,6 +29,8 @@ async function find_students() {
             'Authorization': 'Bearer ' + api_key
         }
     }
+
+
     for (student of students) {
         let api_stud = await fetch("https://api.github.com/users/" + student, options)
             .then(res => res.json())
@@ -35,9 +41,9 @@ async function find_students() {
                 document.querySelector('#loading').appendChild(newSpan)
                 let img = document.createElement('img');
                 img.setAttribute('src', 'asset/gif/Godno.gif');
-                document.querySelector('#loading').appendChild(img)
+                document.querySelector('#loading').appendChild(img);
 
-            })
+            });
         api_students.push(api_stud);
         let newDiv = document.createElement('div');
         newDiv.classList.add('student');
