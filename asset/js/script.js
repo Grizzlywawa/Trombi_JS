@@ -13,7 +13,8 @@ let students = ["bell4my",
     "faaay80",
     "jdasou",
     "Maelissb",
-    "lukasatan"];
+    "lukasatan",
+    "KantaMizonu"];
 
 async function find_students() {
     students.sort(() => Math.random() - 0.2);
@@ -31,20 +32,21 @@ async function find_students() {
     }
 
 
+
+
     for (student of students) {
         let api_stud = await fetch("https://api.github.com/users/" + student, options)
-            .then(res => res.json())
-            .catch(function error(){
-                let newSpan = document.createElement('span');
-                newSpan.classList.add('error');
-                newSpan.innerText = "La requête fetch n'a pas pu se faire !"
-                document.querySelector('#loading').appendChild(newSpan)
-                let img = document.createElement('img');
-                img.setAttribute('src', 'asset/gif/Godno.gif');
-                document.querySelector('#loading').appendChild(img);
-            });
-
-        if(api_stud.status !==200){
+        .then(res => res.json())
+        .catch(function error(){
+            let newSpan = document.createElement('span');
+            newSpan.classList.add('error');
+            newSpan.innerText = "La requête fetch n'a pas pu se faire !"
+            document.querySelector('#loading').appendChild(newSpan)
+            let img = document.createElement('img');
+            img.setAttribute('src', 'asset/gif/Godno.gif');
+            document.querySelector('#loading').appendChild(img);
+        });
+        if(document.status !== 200){
             let newSpan = document.createElement('span');
             newSpan.classList.add('error');
             newSpan.innerText = "Le token n'est pas bon !"
@@ -105,10 +107,14 @@ async function find_students() {
         button.classList = "button";
 
     }
+
     document.querySelector("#grid").style.display="grid"
     document.querySelector("#loading").style.display="none"
     document.querySelector(".title").style.display="inline"
+
+
 }
+
 
 // "which php" dans le terminal pour trouver d'où viennent les instructions php
 find_students()
